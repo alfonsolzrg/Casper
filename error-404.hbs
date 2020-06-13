@@ -4,27 +4,29 @@ It's a good idea to keep this template as minimal as possible in terms of both f
 --}}
 
 {{!< default}}
-{{!-- The tag above means: insert everything in this file
-into the {body} of the default.hbs template --}}
-
-<header class="site-header">
-    {{> site-header}}
-</header>
-
-<main id="site-main" class="site-main outer error-content">
-    <div class="inner">
-        <section class="error-message">
-            <h1 class="error-code">{{statusCode}}</h1>
-            <p class="error-description">{{message}}</p>
-            <a class="error-link" href="{{@site.url}}">Go to the front page →</a>
-        </section>
-
-        {{#get "posts" limit="3" include="authors,tags"}}
-            <div class="post-feed">
-                {{#foreach posts}}
-                {{> "post-card"}}
-                {{/foreach}}
+<section>
+    <div class="container d-flex flex-column">
+        <div class="row align-items-center justify-content-center no-gutters min-vh-100">
+            <div class="col-12 col-md-6 col-lg-4 py-8 py-md-11">
+                <h1 class="display-3 font-weight-bold">
+                    Ooops.
+                </h1>
+                <p class="mb-5 text-muted">
+                    Encontramos un error al procesar lo que buscas
+                </p>
+                <p class="text-danger mb-0">Error {{statusCode}}: {{message}}</p>
+                <a class="btn btn-primary" href="{{@site.url}}">
+                    Regresar al blog
+                </a>
             </div>
-        {{/get}}
-    </div>
-</main>
+            <div class="col-lg-7 offset-lg-1 align-self-stretch d-none d-lg-block">
+                <div class="h-100 w-cover bg-cover" style="background-image: url({{asset "theme/assets/img/covers/cover-16.jpg"}});">
+                </div>
+                <div class="shape shape-left shape-fluid-y svg-shim text-white">
+                    <svg viewBox="0 0 100 1544" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h100v386l-50 772v386H0V0z" fill="currentColor" /></svg>
+                </div>
+            </div>
+        </div> 
+    </div> 
+</section>

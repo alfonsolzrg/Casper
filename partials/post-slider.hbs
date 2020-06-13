@@ -1,0 +1,64 @@
+<div class="card card-row shadow-light-lg mb-6">
+    <div class="row no-gutters">
+        <div class="col-12 col-md-6">
+            <div class="card-img-slider"
+                data-flickity='{"fade": true, "imagesLoaded": true, "pageDots": false, "prevNextButtons": false, "asNavFor": "#blogSlider", "draggable": false}'>
+                {{#foreach posts}}
+                <a class="card-img-left bg-cover" style="background-image: url({{img_url feature_image size="m"}});"
+                    href="{{url}}">
+                    <img src="{{img_url feature_image size="m"}}" alt="..." class="img-fluid d-md-none invisible">
+                </a>
+                {{/foreach}}
+            </div>
+            <div class="shape shape-right shape-fluid-y svg-shim text-white d-none d-md-block">
+                <svg viewBox="0 0 112 690" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M116 0H51v172C76 384 0 517 0 517v173h116V0z" fill="currentColor" /></svg>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 position-static">
+            <div class="position-static"
+                data-flickity='{"wrapAround": true, "pageDots": true, "imagesLoaded": true, "adaptiveHeight": true}'
+                id="blogSlider">
+                {{#foreach posts}}
+                <div class="w-100">
+                    <a class="card-body" href="{{url}}">
+                        <div class="d-flex align-items-center">
+                            <h3 class="mb-1 mr-3">{{title}}</h3>
+                            {{#if primary_tag}}
+                            {{#primary_tag}}
+                            <span class="badge badge-pill badge-primary-soft mt-1">
+                                <span class="h6 text-uppercase">
+                                    {{name}}
+                                </span>
+                            </span>
+                            {{/primary_tag}}
+                            {{/if}}
+                        </div>
+                        
+                        <p class="mb-0 text-muted">
+                            {{excerpt words="44"}}
+                        </p>
+                    </a>
+                    <a class="card-meta mt-auto" href="{{url}}">
+                        <hr class="card-meta-divider">
+                        {{#foreach authors}}
+                        <div class="avatar avatar-sm mr-2">
+                            <img class="avatar-img rounded-circle" src="{{img_url profile_image size="xs"}}"
+                                alt="{{name}}" />
+                        </div>
+                        <h6 class="text-uppercase text-muted mr-2 mb-0">
+                            {{name}}
+                        </h6>
+                        {{/foreach}}
+                        <p class="h6 text-uppercase text-muted mb-0 ml-auto">
+                            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time> <span
+                                class="bull">&bull;</span>
+                            {{reading_time}}</span>
+                        </p>
+                    </a>
+                </div>
+                {{/foreach}}
+            </div>
+        </div>
+    </div>
+</div>

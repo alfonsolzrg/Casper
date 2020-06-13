@@ -2,31 +2,34 @@
 {{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
 
 {{#tag}}
-<header class="site-archive-header">
-    {{> site-header}}
-    {{> header-background background=feature_image}} {{!--Special header-image.hbs partial to generate the background image--}}
-        <div class="inner site-header-content">
-            <h1 class="site-title">{{name}}</h1>
-            <h2 class="site-description">
+<section class="py-4 py-md-5">
+    <div class="container">
+        <div class="row align-items-center mb-5">
+            <div class="col-12 col-md">
+                <h3 class="mb-0 text-primary">
+                    {{name}}
+                </h3>
+                <p class="mb-0 text-muted">
                 {{#if description}}
-                {{description}}
+                    {{description}}
                 {{else}}
-                A collection of {{plural ../pagination.total empty='posts' singular='% post' plural='% posts'}}
+                    Una colección de {{plural ../pagination.total empty='posts' singular='% post' plural='% posts'}}
                 {{/if}}
-            </h2>
-        </div>
+                </p>
+            </div>
+        </div> 
     </div>
-</header>
+</section>
 {{/tag}}
 
-{{!-- The main content area --}}
-<main id="site-main" class="site-main outer">
-    <div class="inner posts">
-        <div class="post-feed">
+<section class="pb-4 pb-md-5">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
             {{#foreach posts}}
-                {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
-                {{> "post-card"}}
+            <div class="col my-3">
+                {{> "post-vertical-card"}}
+            </div>
             {{/foreach}}
         </div>
     </div>
-</main>
+</section>

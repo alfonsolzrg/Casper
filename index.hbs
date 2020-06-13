@@ -2,97 +2,142 @@
 {{!-- The tag above means: insert everything in this file
 into the {body} of the default.hbs template --}}
 
-<header class="site-home-header">
-    {{> header-background background=@site.cover_image}} {{!--Special header-image.hbs partial to generate the background image--}}
-        <div class="inner">
-            {{> "site-nav"}}
-            <div class="site-header-content">
-                <h1 class="site-title">
-                    {{#if @site.logo}}
-                        <img class="site-logo" src="{{img_url @site.logo size="l"}}" alt="{{@site.title}}" />
-                    {{else}}
-                        {{@site.title}}
-                    {{/if}}
+<section data-jarallax data-speed=".8" class="py-10 py-md-14 overlay overlay-black overlay-60 bg-cover jarallax"
+    style="background-image: url({{asset "theme/assets/img/covers/cover-13.jpg"}});">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-7 text-center">
+
+                
+                <h1 class="display-2 font-weight-bold text-white">
+                    Transforma tu idea en negocio.
                 </h1>
-                <h2 class="site-description">{{@site.description}}</h2>
+
+                
+                <p class="lead mb-0 text-white-75">
+                    Aquí encontrarás respuestas a todas tus preguntas relacionadas con emprender en México 🇲🇽
+                </p>
+
+            </div>
+        </div> 
+    </div> 
+</section>
+
+<div class="position-relative">
+    <div class="shape shape-bottom shape-fluid-x svg-shim text-light">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor" /></svg>
+    </div>
+</div>
+
+<section class="mt-6">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <h6 class="font-weight-bold text-uppercase text-muted mb-0">
+                            Categorías:
+                        </h6>
+                    </div>
+                    <div class="col ml-n5">
+                        {{#get "tags"}}
+                            {{#foreach tags}}
+                            <a class="badge badge-pill badge-primary-soft" href="{{url}}" title="{{name}}">
+                                <span class="h6 text-uppercase">
+                                    {{name}}
+                                </span>
+                            </a>
+                            {{/foreach}}
+                        {{/get}}
+                    </div>
+                </div> 
+            </div>
+        </div> 
+    </div>
+</section>
+
+<section class="pt-7 pt-md-10">
+    <div class="container">
+        <div class="row align-items-center mb-5">
+            <div class="col-12 col-md">
+                <h3 class="mb-0">
+                    Guías y recursos principales
+                </h3>
+                <p class="mb-0 text-muted">
+                    Resuelve tus dudas sobre emprender en México.
+                </p>
+            </div>
+            <div class="col-12 col-md-auto">
+                <a href="#!" class="btn btn-sm btn-outline-gray-300 d-none d-md-inline">
+                    Ver todas
+                </a>
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col-12">
+                {{#get "posts" limit="2" filter="featured:true" include="authors,tags"}}
+                    {{#foreach posts}}
+                        {{> "post-card"}}
+                    {{/foreach}}
+                {{/get}}
             </div>
         </div>
-    </div>
-</header>
+    </div> 
+</section>
 
-{{!-- The main content area --}}
-<main id="site-main" class="site-main outer">
-    <div class="inner posts">
+<section class="pt-7 pt-md-10">
+    <div class="container">
+        <div class="row align-items-center mb-5">
+            <div class="col-12 col-md">
+                <h3 class="mb-0">
+                    Tipos de empresas en México
+                </h3>
+                <p class="mb-0 text-muted">
+                    Lee sobre los tipos de empresas más comunes en México
+                </p>
+            </div>
+            <div class="col-12 col-md-auto">
+                <a href="#!" class="btn btn-sm btn-outline-gray-300 d-none d-md-inline">
+                    Ver todos
+                </a>
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col-12">
+                {{#get "posts" limit="4" order="published_at desc" filter="primary_tag:tipos-de-empresas" include="authors,tags"}}
+                    {{> "post-slider"}}
+                {{/get}}
+            </div>
+        </div> 
+    </div> 
+</section>
 
-        <div class="post-feed">
-            {{#foreach posts}}
-
-                {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
-                {{> "post-card"}}
-
-            {{/foreach}}
+<section class="pt-y py-md-10">
+    <div class="container">
+        <div class="row align-items-center mb-5">
+            <div class="col-12 col-md">
+                <h3 class="mb-0">
+                    Últimos posts
+                </h3>
+                <p class="mb-0 text-muted">
+                    Conoce sobre noticias y temas específicos
+                </p>
+            </div>
+            <div class="col-12 col-md-auto">
+                <a href="#!" class="btn btn-sm btn-outline-gray-300 d-none d-md-inline">
+                    Ver todos
+                </a>
+            </div>
+        </div> 
+        <div class="row">
+            {{#get "posts" limit="3" order="published_at desc" include="authors"}}
+                {{#foreach posts}}
+                <div class="col-12 col-md-6 col-lg-4 d-flex">
+                    {{> "post-vertical-card"}}
+                </div>
+                {{/foreach}}
+            {{/get}}
         </div>
-
     </div>
-</main>
-
-{{> site-header}}
-
-{{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
-{{#contentFor "scripts"}}
-<script>
-
-    // NOTE: Scroll performance is poor in Safari
-    // - this appears to be due to the events firing much more slowly in Safari.
-    //   Dropping the scroll event and using only a raf loop results in smoother
-    //   scrolling but continuous processing even when not scrolling
-    $(document).ready(function () {
-        
-        var nav = document.querySelector('.site-nav-main .site-nav');
-        var feed = document.querySelector('.post-feed');
-
-        var lastScrollY = window.scrollY;
-        var lastWindowHeight = window.innerHeight;
-        var lastDocumentHeight = $(document).height();
-        var ticking = false;
-
-        function onScroll() {
-            lastScrollY = window.scrollY;
-            requestTick();
-        }
-
-        function onResize() {
-            lastWindowHeight = window.innerHeight;
-            lastDocumentHeight = $(document).height();
-            requestTick();
-        }
-
-        function requestTick() {
-            if (!ticking) {
-                requestAnimationFrame(update);
-            }
-            ticking = true;
-        }
-
-        function update() {
-            var trigger = feed.getBoundingClientRect().top + window.scrollY;
-            var progressMax = lastDocumentHeight - lastWindowHeight;
-
-            // show/hide nav
-            if (lastScrollY >= trigger - 20) {
-                nav.classList.add('fixed-nav-active');
-            } else {
-                nav.classList.remove('fixed-nav-active');
-            }
-
-            ticking = false;
-        }
-
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', onResize, false);
-
-        update();
-
-    });
-</script>
-{{/contentFor}}
+</section>

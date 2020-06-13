@@ -1,0 +1,13 @@
+<div class="my-fancy-nav-wrapper">
+    <ul class="nav">
+        <!-- Loop through the navigation items -->
+        {{#foreach navigation}}
+        <li class="nav-item">
+            <a class="nav-link mr-n2 pr-n2 {{#if current}}active{{/if}}" id="navbarLandings" href="{{url absolute="true"}}">
+                {{label}}
+            </a>
+        </li>
+        {{/foreach}}
+        <!-- End the loop -->
+    </ul>
+</div>

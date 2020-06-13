@@ -1,0 +1,86 @@
+{{#if feature_image}}
+    <div class="card mb-6 mb-lg-0 shadow-light-lg lift lift-lg">
+        {{#if featured}}
+        <div class="col-12">
+            <span class="badge badge-pill badge-gray-600 badge-float badge-float-outside">
+                <span class="h6 text-uppercase">Principal</span>
+            </span>
+        </div>
+        {{/if}}
+        <a class="card-img-top" href="{{url}}">
+            <img src="{{img_url feature_image size="m"}}" alt="{{title}}" loading="lazy" class="card-img-top">
+            <div class="position-relative">
+                <div class="shape shape-bottom shape-fluid-x svg-shim text-white">
+                    <svg viewBox="0 0 2880 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M2160 0C1440 240 720 240 720 240H0v240h2880V0h-720z" fill="currentColor" /></svg>
+                </div>
+            </div>
+        </a>
+        <a class="card-body" href="{{url}}">
+            <h3>
+                {{title}}
+                {{#if primary_tag}}
+                {{#primary_tag}}
+                <span class="badge badge-pill badge-primary-soft">
+                    <span class="h6 text-uppercase">
+                        {{name}}
+                    </span>
+                </span>
+                {{/primary_tag}}
+                {{/if}}
+            </h3>
+            <p class="mb-0 text-muted">
+                {{excerpt words="44"}}
+            </p>
+        </a>
+        <a class="card-meta mt-auto" href="{{url}}">
+            <hr class="card-meta-divider">
+            {{#foreach authors}}
+            <div class="avatar avatar-sm mr-2">
+                <img class="avatar-img rounded-circle" src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
+            </div>
+            {{/foreach}}
+            <p class="h6 text-uppercase text-muted mb-0 ml-auto">
+                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time> <span class="bull">&bull;</span>
+                {{reading_time}}</span>
+            </p>
+        </a>
+    </div>
+{{else}}
+    <div class="card shadow-light-lg  mb-6">
+        {{#if featured}}
+        <div class="col-12">
+            <span class="badge badge-pill badge-gray-600 badge-float badge-float-outside">
+                <span class="h6 text-uppercase">Principal</span>
+            </span>
+        </div>
+        {{/if}}
+        <a class="card-body my-auto" href="{{url}}">
+            <h3 class="mt-auto">
+                {{title}}
+                {{#if primary_tag}}
+                {{#primary_tag}}
+                <span class="badge badge-primary-soft">{{name}}</span>
+                {{/primary_tag}}
+                {{/if}}
+            </h3>
+            <p class="mb-0 text-muted">
+                {{excerpt words="44"}}
+            </p>
+        </a>
+        <a class="card-meta" href="{{url}}">
+            <hr class="card-meta-divider">
+            {{#foreach authors}}
+            <div class="avatar avatar-sm mr-2">
+                <img class="avatar-img rounded-circle" src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
+            </div>
+            {{/foreach}}
+            <p class="h6 text-uppercase text-muted mb-0 ml-auto">
+                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time> <span
+                    class="bull">&bull;</span>
+                {{reading_time}}</span>
+            </p>
+        </a>
+    </div>
+{{/if}}

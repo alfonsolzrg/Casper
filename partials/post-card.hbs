@@ -1,70 +1,99 @@
-<article class="post-card {{post_class}} {{#unless feature_image}}no-image{{else}}{{#is "home"}}{{#has index="nth:6"}}post-card-large{{/has}}{{/is}}{{/unless}}">
-
+<div class="col-12">
     {{#if feature_image}}
-    <a class="post-card-image-link" href="{{url}}">
-        {{!-- This is a responsive image, it loads different sizes depending on device
-        https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
-        <img class="post-card-image"
-            srcset="{{img_url feature_image size="s"}} 300w,
-                    {{img_url feature_image size="m"}} 600w,
-                    {{img_url feature_image size="l"}} 1000w,
-                    {{img_url feature_image size="xl"}} 2000w"
-            sizes="(max-width: 1000px) 400px, 700px"
-            loading="lazy"
-            src="{{img_url feature_image size="m"}}"
-            alt="{{title}}"
-        />
-    </a>
-    {{/if}}
-
-    <div class="post-card-content">
-
-        <a class="post-card-content-link" href="{{url}}">
-
-            <header class="post-card-header">
+    <div class="card card-row shadow-light-lg lift mb-6">
+        <div class="row no-gutters">
+            {{#if featured}}
+            <div class="col-12">
+                <span class="badge badge-pill badge-gray-600 badge-float badge-float-outside">
+                    <span class="h6 text-uppercase">Principal</span>
+                </span>
+            </div>
+            {{/if}}
+            <a class="col-12 col-md-6 bg-cover card-img-left"
+                style="background-image: url({{img_url feature_image size="m"}});" href="{{url}}">
+                <img src="{{img_url feature_image size="m"}}" alt="{{title}}" loading="lazy"
+                    class="img-fluid d-md-none invisible post-card-image">
+                <div class="shape shape-right shape-fluid-y svg-shim text-white d-none d-md-block">
+                    <svg viewBox="0 0 112 690" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M116 0H51v172C76 384 0 517 0 517v173h116V0z" fill="currentColor" /></svg>
+                </div>
+            </a>
+            <div class="col-12 col-md-6">
+                <a class="card-body" href="{{url}}">
+                    <h3>
+                        {{title}} 
+                        {{#if primary_tag}}
+                            {{#primary_tag}}
+                                <span class="badge badge-pill badge-primary-soft">
+                                    <span class="h6 text-uppercase">
+                                        {{name}}
+                                    </span>
+                                </span>
+                            {{/primary_tag}}
+                        {{/if}}
+                        
+                    </h3>
+                    <p class="mb-0 text-muted">
+                        {{excerpt words="44"}}
+                    </p>
+                </a>
+                <a class="card-meta" href="{{url}}">
+                    <hr class="card-meta-divider">
+                    {{#foreach authors}}
+                    <div class="avatar avatar-sm mr-2">
+                        <img class="avatar-img rounded-circle" src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
+                    </div>
+                    <h6 class="text-uppercase text-muted mr-2 mb-0">
+                        {{name}}
+                    </h6>
+                    {{/foreach}}
+                    <p class="h6 text-uppercase text-muted mb-0 ml-auto">
+                        <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time> <span
+                            class="bull">&bull;</span>
+                        {{reading_time}}</span>
+                    </p>
+                </a>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="card shadow-light-lg  mb-6">
+        {{#if featured}}
+        <div class="col-12">
+            <span class="badge badge-pill badge-gray-600 badge-float badge-float-outside">
+                <span class="h6 text-uppercase">Principal</span>
+            </span>
+        </div>
+        {{/if}}
+        <a class="card-body my-auto" href="{{url}}">
+            <h3 class="mt-auto">
+                {{title}}
                 {{#if primary_tag}}
                     {{#primary_tag}}
-                    <div class="post-card-primary-tag">{{name}}</div>
+                        <span class="badge badge-primary-soft">{{name}}</span>
                     {{/primary_tag}}
                 {{/if}}
-                <h2 class="post-card-title">{{title}}</h2>
-            </header>
-
-            <section class="post-card-excerpt">
-                {{#if feature_image}}
-                    <p>{{excerpt words="30"}}</p>
-                {{else}}
-                    <p>{{excerpt words="44"}}</p>
-                {{/if}}
-            </section>
-
+            </h3>
+            <p class="mb-0 text-muted">
+                {{excerpt words="44"}}
+            </p>
         </a>
-
-        <footer class="post-card-meta">
-            <ul class="author-list">
-                {{#foreach authors}}
-                <li class="author-list-item">
-            
-                    <div class="author-name-tooltip">
-                        {{name}}
-                    </div>
-            
-                    {{#if profile_image}}
-                    <a href="{{url}}" class="static-avatar">
-                        <img class="author-profile-image" src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
-                    </a>
-                    {{else}}
-                    <a href="{{url}}" class="static-avatar author-profile-image">{{> "icons/avatar"}}</a>
-                    {{/if}}
-                </li>
-                {{/foreach}}
-            </ul>
-            <div class="post-card-byline-content">
-                <span>{{#has author="count:>2"}}Multiple authors{{else}}{{authors}}{{/has}}</span>
-                <span class="post-card-byline-date"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time> <span class="bull">&bull;</span> {{reading_time}}</span>
-            </div>
-        </footer>
-
-    </div>{{!--/.post-card-content--}}
-
-</article>
+        <a class="card-meta" href="{{url}}">
+            <hr class="card-meta-divider">
+            {{#foreach authors}}
+                <div class="avatar avatar-sm mr-2">
+                    <img class="avatar-img rounded-circle" src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
+                </div>
+                <h6 class="text-uppercase text-muted mr-2 mb-0">
+                    {{name}}
+                </h6>
+            {{/foreach}}
+            <p class="h6 text-uppercase text-muted mb-0 ml-auto">
+                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time> <span
+                    class="bull">&bull;</span>
+                {{reading_time}}</span>
+            </p>
+        </a>
+    </div>
+    {{/if}}
+</div>
