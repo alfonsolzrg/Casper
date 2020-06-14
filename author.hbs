@@ -4,58 +4,30 @@
 {{#author}}
 {{!-- Everything inside the #author tags pulls data from the author --}}
 
-
-<header class="site-archive-header">
-    {{> site-header}}
-    {{> header-background background=cover_image}} {{!--Special header-image.hbs partial to generate the background image--}}
-        <div class="inner">
-            <div class="site-header-content author-header">
-                {{#if profile_image}}
-                    <img class="author-profile-image" src="{{profile_image}}" alt="{{name}}" />
-                {{else}}
-                    <span class="author-profile-image">{{> "icons/avatar"}}</span>
-                {{/if}}
-                <div class="author-header-content">
-                    <h1 class="site-title">{{name}}</h1>
-                    {{#if bio}}
-                        <h2 class="author-bio">{{bio}}</h2>
-                    {{/if}}
-                    <div class="author-meta">
-                        {{#if location}}
-                            <div class="author-location">{{location}}</div>
-                        {{/if}}
-                        <div class="author-stats">
-                            {{plural ../pagination.total empty='No posts' singular='% post' plural='% posts'}}
-                        </div>
-                        {{#if website}}
-                            <span class="author-social-link"><a href="{{website}}" target="_blank" rel="noopener">Website</a></span>
-                        {{/if}}
-                        {{#if twitter}}
-                            <span class="author-social-link"><a href="{{twitter_url}}" target="_blank" rel="noopener">Twitter</a></span>
-                        {{/if}}
-                        {{#if facebook}}
-                            <span class="author-social-link"><a href="{{facebook_url}}" target="_blank" rel="noopener">Facebook</a></span>
-                        {{/if}}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
+  {{> "author-card"}}
 {{/author}}
 
-{{!-- The main content area --}}
-<main id="site-main" class="site-main outer">
-    <div class="inner posts">
 
-        <div class="post-feed">
+<section class="pt-4 pt-md-5 pb-2 pb-md-3">
+    <div class="container">
+        <div class="row align-items-center mb-5">
+            <div class="col-12 col-md">
+                <h3 class="mb-0">
+                    Todas las publicaciones
+                </h3>
+            </div>
+        </div> 
+    </div>
+</section>
+
+<section class="pb-4 pb-md-5">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
             {{#foreach posts}}
-
-                {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
-                {{> "post-card"}}
-
+            <div class="col my-3">
+                {{> "post-vertical-card"}}
+            </div>
             {{/foreach}}
         </div>
-
     </div>
-</main>
+</section>

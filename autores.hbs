@@ -1,0 +1,25 @@
+{{!< default}}
+
+<section class="pt-4 pt-md-5 pb-2 pb-md-3">
+    <div class="container">
+        <div class="row align-items-center mb-0">
+            <div class="col-12 col-md">
+                <h3 class="mb-0">
+                    Nuestros autores
+                </h3>
+                <p class="mb-0 text-muted">
+                    Conoce quiénes forman parte de nuestro equipo.
+                </p>
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col-12">
+                {{#get "authors"}}
+                    {{#foreach authors}}
+                        {{> "author-card-with-links"}}
+                    {{/foreach}}
+                {{/get}}
+            </div>
+        </div>
+    </div>
+</section>
